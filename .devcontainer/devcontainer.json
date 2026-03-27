@@ -1,0 +1,38 @@
+{
+  "name": "demo2-dev",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "remoteUser": "vscode",
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {},
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20",
+
+      // Yarn's legacy Debian APT repo regularly causes devcontainer builds to fail
+      // due to key rotations/expiry. This repo uses npm, so keep Yarn off APT.
+      "installYarnUsingApt": false
+    }
+  },
+  "mounts": [
+    "source=demo2-codex,target=/home/vscode/.codex,type=volume"
+  ],
+  "forwardPorts": [
+    8000
+  ],
+  "postCreateCommand": "python3 -m pip install --upgrade pip && python3 -m pip install -e .",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/bin/python3"
+      },
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "charliermarsh.ruff"
+      ]
+    }
+  },
+  "updateRemoteUserUID": true
+}
