@@ -8,21 +8,21 @@ This file tracks the roles needed to deliver the Eventbrite data ingestion proje
 
 - Name: Builder
 - Responsibility: Implement the Python client, configuration, data fetching flow, and output handling.
-- Current focus: Replace the placeholder main.py flow with real Eventbrite API integration.
+- Current focus: Extend the organization-scoped MVP beyond the initial reusable module and JSON export.
 
 ## Supporting Agents
 
 - Name: Product
 - Responsibility: Define which Eventbrite data needs to be collected, how often it should be refreshed, and what downstream format is required.
-- Current focus: Confirm the required entities, fields, and filters.
+- Current focus: Decide whether the MVP should later expand beyond events, venues, organizers, and ticket classes.
 
 - Name: Data
 - Responsibility: Define schemas for raw responses and normalized output.
-- Current focus: Document the minimum viable event record and any pagination strategy.
+- Current focus: Refine the JSON snapshot schema and determine whether additional normalization is needed.
 
 - Name: Operations
 - Responsibility: Manage credentials, environment setup, rate-limit handling, and deployment/runtime concerns.
-- Current focus: Decide how the Eventbrite API token will be stored and how jobs will be run.
+- Current focus: Decide how the reusable module will be executed in production and how secrets will be managed outside development.
 
 ## Working Rules
 
@@ -53,6 +53,6 @@ Minimum documentation sync requirement for each meaningful change:
 
 ## Decisions Pending
 
-- Confirm whether the project needs organizer, venue, or ticket-class data in addition to events.
-- Confirm whether output should be JSON, CSV, database rows, or stdout.
-- Confirm whether this will run as a one-off script or a scheduled job.
+- Confirm whether the source scope should remain organization-based or add support for other collection scopes.
+- Confirm whether later output targets should include CSV or database persistence in addition to JSON.
+- Confirm how the reusable module should be scheduled or deployed outside local execution.

@@ -20,17 +20,21 @@ The format follows Keep a Changelog principles and uses an `Unreleased` section 
 - `.github/CODEOWNERS` assigning default ownership.
 - `.gitattributes` to normalize text files and preserve Windows-native script line endings.
 - `.editorconfig` to enforce UTF-8, LF endings, final newline, trimming, and indentation defaults.
+- `.env.example` documenting required Eventbrite configuration values.
+- `eventbrite/` package with configuration loading, API client, enrichment service, models, and JSON output.
+- Unit tests for configuration, pagination, enrichment, and JSON output behavior.
 - This `Changelog.md` to track meaningful repository changes.
 
 ### Changed
 
-- `.gitignore` now excludes common macOS, Windows, Python, and editor-generated files.
-- `README.md` now includes repository governance files and cross-platform standards.
-- `Context.md` now reflects the repository governance and cross-platform baseline.
-- `Progress.md` now reflects the addition of the cross-platform repository controls.
-- `Debug.md` now records the governance and cross-platform documentation work alongside the tooling mismatch mitigation.
-- `Agents.md` includes `README.md` in the documentation lockstep policy.
+- `.gitignore` now excludes generated Eventbrite output under `data/` in addition to OS, Python, and editor-generated files.
+- `README.md` now includes real installation, configuration, usage, and MVP scope details.
+- `Context.md` now reflects the confirmed MVP decisions and implemented package structure.
+- `Progress.md` now reflects that the first implementation slice is complete.
+- `Debug.md` now records the implementation milestone and remaining live-validation risk.
+- `pyproject.toml` now defines runtime dependencies for `requests` and `python-dotenv` plus optional test dependencies.
+- `main.py` now runs the real Eventbrite ingestion flow instead of a placeholder print statement.
 
 ### Fixed
 
-- No code defects fixed yet. Current mitigation is operational: verify repository writes with shell commands until the workspace tooling mismatch is resolved.
+- Replaced the placeholder application flow with a real organization-scoped Eventbrite ingestion path.

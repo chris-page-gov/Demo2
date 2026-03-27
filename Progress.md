@@ -2,13 +2,13 @@
 
 ## Status
 
-- Overall phase: Project setup
-- Delivery status: Not started
+- Overall phase: MVP implementation started
+- Delivery status: First implementation slice complete
 - Tracking docs: Created and synchronized
-- README: Populated with project overview, governance baseline, cross-platform rules, and temporary operating rules
+- README: Updated with real setup, configuration, usage, and operating rules
 - Repository governance: Baseline files added
 - Cross-platform repo controls: Added and documented
-- API integration: Not started
+- API integration: Organization-scoped JSON export implemented
 - Workspace write policy: Shell-verified workflow in effect
 
 ## Completed
@@ -18,21 +18,23 @@
 - Added `Tooling-Notes.md` to capture the workspace tool mismatch and mitigation.
 - Added `Changelog.md` to track project changes in a structured way.
 - Defined a documentation lockstep rule in `Agents.md`.
-- Filled `README.md` with the project summary, current status, governance baseline, and next steps.
 - Added `LICENSE`, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md`, `CONTRIBUTORS.md`, and `.github/CODEOWNERS`.
 - Added `.gitattributes`, `.editorconfig`, and updated `.gitignore` for cross-platform consistency.
+- Added Eventbrite configuration loading from environment variables and optional `.env` support.
+- Added an authenticated Eventbrite client with pagination and bounded retry behavior.
+- Added organization-scoped event enrichment for venues, organizers, and ticket classes.
+- Added deterministic JSON output and a thin `main.py` entrypoint.
+- Added unit tests for configuration, client pagination, enrichment, and JSON output.
 
 ## Next Steps
 
-1. Choose the first Eventbrite endpoint to integrate.
-2. Add configuration handling for API credentials.
-3. Add an HTTP client dependency and implement request logic.
-4. Add pagination and error handling.
-5. Add output formatting or persistence.
-6. Expand `README.md` with concrete setup and usage instructions once implementation exists.
+1. Run the implementation against a real Eventbrite organization and validate the output payload.
+2. Refine the JSON schema if downstream consumers need a flatter or narrower structure.
+3. Decide whether to add alternative source scopes, output formats, or scheduling.
+4. Tighten retry and error-handling behavior based on real API responses.
 
 ## Risks
 
-- Eventbrite API access requirements are not yet documented in the repo.
-- No sample payloads or schema decisions are defined yet.
+- The current implementation has not yet been exercised against a live Eventbrite API token in this workspace.
+- Eventbrite endpoint expansion behavior may vary, so some related-entity fetch logic still needs real-world validation.
 - The workspace file tools are not consistently operating on the same path as the shell.

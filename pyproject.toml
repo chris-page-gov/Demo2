@@ -1,7 +1,15 @@
 [project]
 name = "demo2"
 version = "0.1.0"
-description = "Add your description here"
+description = "Eventbrite data ingestion client and JSON exporter"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+  "python-dotenv>=1.2.2",
+  "requests>=2.33.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=9.0.2",
+]
