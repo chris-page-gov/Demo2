@@ -41,6 +41,8 @@ make coverage
 
 The coverage gate enforces a minimum of 90% total coverage and is intended for final local validation and CI, not every small iterative test run.
 
+GitHub branch protection is still a required follow-up, but it must be enabled in the repository settings outside this workspace.
+
 Install local hooks:
 
 ```bash
@@ -117,6 +119,8 @@ This repository includes the baseline governance and cross-platform controls exp
 - `.pre-commit-config.yaml`
 - `Changelog.md`
 - `Makefile`
+
+Branch protection should be configured on the default branch to require the CI workflow before merge.
 
 ## Cross-Platform Rules
 

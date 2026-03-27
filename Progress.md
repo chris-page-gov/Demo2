@@ -11,6 +11,7 @@
 - Quality enforcement: Lint, typing, tests, pre-commit, CI, and 90% coverage gate configured
 - API integration: Organization-scoped JSON export implemented
 - Workspace write policy: Shell-verified workflow in effect
+- Branch protection: Still pending manual configuration in GitHub repository settings
 
 ## Completed
 
@@ -34,9 +35,11 @@
 2. Refine the JSON schema if downstream consumers need a flatter or narrower structure.
 3. Decide whether to add alternative source scopes, output formats, or scheduling.
 4. Tighten retry and error-handling behavior based on real API responses.
+5. Enable branch protection on the default branch so CI is required before merge.
 
 ## Risks
 
 - The current implementation has not yet been exercised against a live Eventbrite API token in this workspace.
 - Eventbrite endpoint expansion behavior may vary, so some related-entity fetch logic still needs real-world validation.
 - The workspace file tools are not consistently operating on the same path as the shell.
+- GitHub branch protection is not enforced yet because repository settings were not changed from this environment.

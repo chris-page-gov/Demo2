@@ -28,6 +28,7 @@ The format follows Keep a Changelog principles and uses an `Unreleased` section 
 - `.github/pull_request_template.md` to require verification details and test-driven workflow evidence.
 - `Makefile` convenience targets for install, lint, type-check, tests, and coverage checks.
 - This `Changelog.md` to track meaningful repository changes.
+- Documentation noting that branch protection remains a manual GitHub follow-up while the CI and coverage gates are already in place.
 
 ### Changed
 
