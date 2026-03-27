@@ -35,7 +35,7 @@
 2. Refine the JSON schema if downstream consumers need a flatter or narrower structure.
 3. Decide whether to add alternative source scopes, output formats, or scheduling.
 4. Tighten retry and error-handling behavior based on real API responses.
-5. Enable branch protection on the default branch so CI is required before merge.
+5. Configure branch protection on the default branch so that all required CI status checks (linting, typing, tests, coverage gate, and each Python-version matrix job) must succeed before merge.
 
 ## Risks
 
