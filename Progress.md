@@ -5,8 +5,9 @@
 - Overall phase: Project setup
 - Delivery status: Not started
 - Tracking docs: Created and synchronized
-- README: Populated with project overview, governance baseline, and temporary operating rules
+- README: Populated with project overview, governance baseline, cross-platform rules, and temporary operating rules
 - Repository governance: Baseline files added
+- Cross-platform repo controls: Added and documented
 - API integration: Not started
 - Workspace write policy: Shell-verified workflow in effect
 
@@ -19,6 +20,7 @@
 - Defined a documentation lockstep rule in `Agents.md`.
 - Filled `README.md` with the project summary, current status, governance baseline, and next steps.
 - Added `LICENSE`, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md`, `CONTRIBUTORS.md`, and `.github/CODEOWNERS`.
+- Added `.gitattributes`, `.editorconfig`, and updated `.gitignore` for cross-platform consistency.
 
 ## Next Steps
 

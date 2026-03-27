@@ -9,8 +9,9 @@ Build a Python project that retrieves Eventbrite data from the API and prepares 
 - The repository is a minimal Python project scaffold.
 - `main.py` currently prints a placeholder message.
 - `pyproject.toml` defines the package but has no dependencies yet.
-- `README.md` documents the project scope, current status, governance baseline, and workspace operating rules.
-- Baseline repository governance files are now present for licensing, contribution guidance, conduct, security reporting, ownership, and changelog tracking.
+- `README.md` documents the project scope, current status, governance baseline, cross-platform controls, and workspace operating rules.
+- Baseline repository governance files are present for licensing, contribution guidance, conduct, security reporting, ownership, and changelog tracking.
+- Git and editor-level configuration now enforce consistent line endings and common formatting across macOS, Windows, and Linux.
 
 ## Known Requirements
 
@@ -18,6 +19,7 @@ Build a Python project that retrieves Eventbrite data from the API and prepares 
 - Add tracking artifacts for project coordination and execution.
 - Keep operator-facing documentation in `README.md` aligned with workflow changes.
 - Maintain repository governance files for licensing, contribution, and security expectations.
+- Maintain cross-platform Git and editor settings so the repository behaves consistently on Mac and PC.
 
 ## Expected Technical Needs
 

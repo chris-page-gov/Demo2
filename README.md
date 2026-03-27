@@ -4,7 +4,7 @@ Python project for retrieving Eventbrite data from the API and preparing it for 
 
 ## Status
 
-This repository is in setup phase. The project scaffolding, governance files, and documentation trackers are in place, but the Eventbrite API integration has not been implemented yet.
+This repository is in setup phase. The project scaffolding, governance files, cross-platform repository controls, and documentation trackers are in place, but the Eventbrite API integration has not been implemented yet.
 
 ## Scope
 
@@ -15,7 +15,7 @@ This repository is in setup phase. The project scaffolding, governance files, an
 
 ## Repository Standards
 
-This repository now includes the baseline governance files expected for a production-ready public repository:
+This repository includes the baseline governance and cross-platform controls expected for a production-ready public repository:
 
 - `LICENSE`
 - `CONTRIBUTING.md`
@@ -23,7 +23,18 @@ This repository now includes the baseline governance files expected for a produc
 - `SECURITY.md`
 - `CONTRIBUTORS.md`
 - `.github/CODEOWNERS`
+- `.gitattributes`
+- `.editorconfig`
 - `Changelog.md`
+
+## Cross-Platform Rules
+
+The repository is configured to work consistently across macOS, Windows, and Linux:
+
+- Git normalizes text files to LF with `.gitattributes`.
+- Windows-native script files such as `.bat`, `.cmd`, and `.ps1` are preserved as CRLF.
+- Editors are guided by `.editorconfig` for UTF-8, final newline, trimming, and indentation.
+- Common macOS, Windows, Python, and editor-generated files are excluded in `.gitignore`.
 
 ## Working Docs
 

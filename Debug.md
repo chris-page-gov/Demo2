@@ -49,3 +49,4 @@ Track integration issues, failed assumptions, and verification steps while build
 - Added a lockstep documentation policy so tracking docs and the changelog are updated together.
 - Added `Changelog.md` as the baseline history for repo-visible changes.
 - Added baseline repository governance files for license, contribution policy, security reporting, code ownership, and contributor guidance.
+- Added Git and editor-level cross-platform controls for line endings, formatting defaults, and OS-specific ignore patterns.

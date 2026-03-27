@@ -16,6 +16,7 @@ Thanks for contributing to this repository.
 3. Update documentation in lockstep when behavior, setup, or project assumptions change.
 4. Add or update tests when implementation code is added.
 5. Update `Changelog.md` under `Unreleased` for meaningful changes.
+6. Follow `.editorconfig` and `.gitattributes` so cross-platform formatting stays consistent.
 
 ## Pull Request Expectations
 
@@ -42,6 +43,7 @@ For any meaningful change, review and update the relevant files:
 - Keep implementation aligned with the existing project style.
 - Avoid unrelated refactors in the same change.
 - Handle API failures explicitly when integrating with external services.
+- Do not introduce platform-specific line endings or editor-specific formatting drift.
 
 ## Reporting Security Issues
 
