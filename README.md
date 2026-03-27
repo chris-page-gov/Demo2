@@ -4,15 +4,54 @@ Python project for retrieving Eventbrite data from the API and exporting an orga
 
 ## Status
 
-This repository now includes the first implementation slice for Eventbrite ingestion:
+This repository includes the first implementation slice for Eventbrite ingestion:
 
 - configuration loading from environment variables and optional `.env`
 - authenticated Eventbrite API client with pagination and basic retry handling
 - event enrichment for venues, organizers, and ticket classes
 - JSON file output
-- unit tests for config, client, service, and output behavior
+- unit tests for config, client, service, output, and top-level orchestration
+- repo-enforced quality tooling for linting, typing, tests, pre-commit, and CI
 
 The current implementation is designed as a reusable library module with a thin top-level entrypoint.
+
+## Engineering Guardrails
+
+This repository follows a test-driven workflow for implementation changes.
+
+- Write or update a failing test first when changing behavior.
+- Make the smallest production change needed to satisfy the test.
+- Run focused local tests without coverage during iteration.
+- Run the full quality gate before considering work complete.
+- Keep documentation in lockstep with behavior and workflow changes.
+
+Local iterative quality gate:
+
+```bash
+python3 -m ruff check .
+python3 -m mypy
+python3 -m pytest
+```
+
+Full coverage gate:
+
+```bash
+make coverage
+```
+
+The coverage gate enforces a minimum of 90% total coverage and is intended for final local validation and CI, not every small iterative test run.
+
+Install local hooks:
+
+```bash
+python3 -m pre_commit install
+```
+
+## Typing Policy
+
+The repository uses `mypy` in strict mode for production code under `eventbrite/` and `main.py`.
+
+That means typing is strict for application code, but not globally universal across every possible file type in the repo. Tests are not currently included in the strict `mypy` target, which is intentional to keep the signal focused on shipped code.
 
 ## Current MVP Scope
 
@@ -71,9 +110,13 @@ This repository includes the baseline governance and cross-platform controls exp
 - `SECURITY.md`
 - `CONTRIBUTORS.md`
 - `.github/CODEOWNERS`
+- `.github/workflows/ci.yml`
+- `.github/pull_request_template.md`
 - `.gitattributes`
 - `.editorconfig`
+- `.pre-commit-config.yaml`
 - `Changelog.md`
+- `Makefile`
 
 ## Cross-Platform Rules
 

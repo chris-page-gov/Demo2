@@ -12,7 +12,12 @@ class FakeClient:
         self.settings = settings
         self.requested_paths: list[str] = []
 
-    def paginate(self, path: str, collection_key: str, params: dict[str, Any] | None = None) -> list[dict[str, Any]]:
+    def paginate(
+        self,
+        path: str,
+        collection_key: str,
+        params: dict[str, Any] | None = None,
+    ) -> list[dict[str, Any]]:
         assert path == "organizations/org-1/events/"
         assert collection_key == "events"
         assert params == {"expand": "venue,organizer,ticket_classes"}
@@ -35,6 +40,39 @@ class FakeClient:
         return responses[path]
 
 
+class ExpandedClient:
+    def __init__(self, settings: EventbriteSettings) -> None:
+        self.settings = settings
+        self.requested_paths: list[str] = []
+
+    def paginate(
+        self,
+        path: str,
+        collection_key: str,
+        params: dict[str, Any] | None = None,
+    ) -> list[dict[str, Any]]:
+        return [
+            {
+                "id": "evt-1",
+                "venue": {"id": "ven-1", "name": "Venue"},
+                "organizer": {"id": "orgzr-1", "name": "Organizer"},
+                "ticket_classes": [{"id": "tc-1", "name": "General"}],
+            },
+            {
+                "id": "evt-2",
+                "venue": {},
+                "organizer_id": None,
+            },
+        ]
+
+    def get(self, path: str, params: dict[str, Any] | None = None) -> dict[str, Any]:
+        self.requested_paths.append(path)
+        responses = {
+            "events/evt-2/ticket_classes/": {"ticket_classes": []},
+        }
+        return responses[path]
+
+
 def test_fetch_organization_snapshot_enriches_related_entities(monkeypatch) -> None:
     settings = EventbriteSettings(
         api_token="token",
@@ -51,3 +89,24 @@ def test_fetch_organization_snapshot_enriches_related_entities(monkeypatch) -> N
     assert record["venue"]["id"] == "ven-1"
     assert record["organizer"]["id"] == "orgzr-1"
     assert record["ticket_classes"][0]["id"] == "tc-1"
+
+
+def test_fetch_organization_snapshot_uses_expanded_entities_when_present(monkeypatch) -> None:
+    settings = EventbriteSettings(
+        api_token="token",
+        organization_id="org-1",
+        output_path=Path("out.json"),
+    )
+    monkeypatch.setattr(service, "EventbriteClient", ExpandedClient)
+
+    payload = service.fetch_organization_snapshot(settings)
+
+    assert payload["event_count"] == 2
+    first_record = payload["events"][0]
+    second_record = payload["events"][1]
+    assert first_record["venue"]["id"] == "ven-1"
+    assert first_record["organizer"]["id"] == "orgzr-1"
+    assert first_record["ticket_classes"][0]["id"] == "tc-1"
+    assert second_record["venue"] is None
+    assert second_record["organizer"] is None
+    assert second_record["ticket_classes"] == []

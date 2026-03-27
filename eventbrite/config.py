@@ -1,8 +1,8 @@
 from __future__ import annotations
 
+import os
 from dataclasses import dataclass
 from pathlib import Path
-import os
 
 from dotenv import load_dotenv
 
@@ -65,5 +65,8 @@ def load_settings() -> EventbriteSettings:
         page_size=_get_positive_int("EVENTBRITE_PAGE_SIZE", 50) or 50,
         page_limit=_get_positive_int("EVENTBRITE_PAGE_LIMIT"),
         timeout_seconds=_get_positive_float("EVENTBRITE_TIMEOUT_SECONDS", 30.0),
-        api_base_url=os.getenv("EVENTBRITE_API_BASE_URL", "https://www.eventbriteapi.com/v3").rstrip("/"),
+        api_base_url=os.getenv(
+            "EVENTBRITE_API_BASE_URL",
+            "https://www.eventbriteapi.com/v3",
+        ).rstrip("/"),
     )

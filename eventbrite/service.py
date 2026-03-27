@@ -17,7 +17,11 @@ def _get_nested_id(payload: dict[str, Any], key: str) -> str | None:
     return None
 
 
-def _fetch_venue(client: EventbriteClient, cache: dict[str, dict[str, Any]], venue_id: str | None) -> dict[str, Any] | None:
+def _fetch_venue(
+    client: EventbriteClient,
+    cache: dict[str, dict[str, Any]],
+    venue_id: str | None,
+) -> dict[str, Any] | None:
     if not venue_id:
         return None
     if venue_id not in cache:
@@ -52,14 +56,19 @@ def fetch_organization_snapshot(settings: EventbriteSettings) -> dict[str, Any]:
     for payload in event_payloads:
         venue = payload.get("venue") if isinstance(payload.get("venue"), dict) else None
         organizer = payload.get("organizer") if isinstance(payload.get("organizer"), dict) else None
-        ticket_classes = payload.get("ticket_classes") if isinstance(payload.get("ticket_classes"), list) else None
-
-        venue = venue or _fetch_venue(client, venue_cache, _get_nested_id(payload, "venue_id") or _get_nested_id(payload, "venue"))
-        organizer = organizer or _fetch_organizer(
-            client,
-            organizer_cache,
-            _get_nested_id(payload, "organizer_id") or _get_nested_id(payload, "organizer"),
+        ticket_classes = (
+            payload.get("ticket_classes")
+            if isinstance(payload.get("ticket_classes"), list)
+            else None
         )
+
+        venue_id = _get_nested_id(payload, "venue_id") or _get_nested_id(payload, "venue")
+        organizer_id = _get_nested_id(payload, "organizer_id") or _get_nested_id(
+            payload,
+            "organizer",
+        )
+        venue = venue or _fetch_venue(client, venue_cache, venue_id)
+        organizer = organizer or _fetch_organizer(client, organizer_cache, organizer_id)
         if ticket_classes is None:
             ticket_class_payload = client.get(f"events/{payload['id']}/ticket_classes/")
             ticket_classes = ticket_class_payload.get("ticket_classes", [])

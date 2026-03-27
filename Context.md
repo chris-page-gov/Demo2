@@ -6,12 +6,12 @@ Build a Python project that retrieves Eventbrite data from the API and prepares 
 
 ## Current State
 
-- The repository now includes an organization-scoped Eventbrite ingestion MVP.
+- The repository includes an organization-scoped Eventbrite ingestion MVP.
 - `main.py` orchestrates configuration loading, snapshot fetching, and JSON output.
 - `eventbrite/` contains configuration, client, service, model, and output modules.
-- `pyproject.toml` defines runtime dependencies for Eventbrite access and optional test dependencies.
-- `README.md` documents installation, configuration, usage, governance, cross-platform controls, and workspace operating rules.
-- Baseline repository governance files are present for licensing, contribution guidance, conduct, security reporting, ownership, and changelog tracking.
+- `pyproject.toml` now defines runtime dependencies, dev tooling dependencies, and repo-wide test, lint, type-check, and coverage configuration.
+- `README.md` documents installation, configuration, usage, governance, cross-platform controls, TDD expectations, and workspace operating rules.
+- Baseline repository governance files are present for licensing, contribution guidance, conduct, security reporting, ownership, CI, and changelog tracking.
 - Git and editor-level configuration enforce consistent line endings and common formatting across macOS, Windows, and Linux.
 
 ## Confirmed MVP Decisions
@@ -21,6 +21,14 @@ Build a Python project that retrieves Eventbrite data from the API and prepares 
 - Related entities: venues, organizers, and ticket classes.
 - Output format: JSON file.
 - Authentication: environment variables with optional `.env` support for development.
+
+## Engineering Baseline
+
+- Test-driven development is the default workflow for behavior changes.
+- Production code is type-checked with `mypy` in strict mode.
+- Local iterative quality gates are `ruff`, `mypy`, and `pytest` without coverage.
+- CI and final local validation enforce a 90% coverage gate.
+- Pre-commit hooks are configured to catch formatting, YAML, merge-conflict, lint, and type issues before commit.
 
 ## Known Requirements
 

@@ -31,6 +31,15 @@ This file tracks the roles needed to deliver the Eventbrite data ingestion proje
 - Treat shell output as the source of truth when shell state and editor-side tool state disagree.
 - Record any recurrence of the tool mismatch in `Debug.md` and `Tooling-Notes.md`.
 
+## Engineering Rules
+
+- Treat test-driven development as the default workflow for behavior changes.
+- Add or update a failing test before changing production behavior unless the task is purely mechanical or documentation-only.
+- During iteration, run the smallest relevant test set without coverage to reduce feedback time.
+- Do not consider implementation complete until `ruff`, `mypy`, and `pytest` pass.
+- Do not consider a change production-ready until the 90% coverage gate passes in CI or via the explicit local coverage command.
+- Keep CI, pre-commit hooks, and local quality commands aligned with the repo’s actual quality gate.
+
 ## Documentation Lockstep
 
 When any project behavior, scope, workflow, operating assumption, or user-facing setup changes, update the related documentation in the same working session.

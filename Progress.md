@@ -2,12 +2,13 @@
 
 ## Status
 
-- Overall phase: MVP implementation started
+- Overall phase: MVP implementation with repo quality guardrails
 - Delivery status: First implementation slice complete
 - Tracking docs: Created and synchronized
-- README: Updated with real setup, configuration, usage, and operating rules
+- README: Updated with real setup, configuration, usage, TDD workflow, typing policy, and operating rules
 - Repository governance: Baseline files added
 - Cross-platform repo controls: Added and documented
+- Quality enforcement: Lint, typing, tests, pre-commit, CI, and 90% coverage gate configured
 - API integration: Organization-scoped JSON export implemented
 - Workspace write policy: Shell-verified workflow in effect
 
@@ -25,6 +26,7 @@
 - Added organization-scoped event enrichment for venues, organizers, and ticket classes.
 - Added deterministic JSON output and a thin `main.py` entrypoint.
 - Added unit tests for configuration, client pagination, enrichment, and JSON output.
+- Added repo guardrails for TDD and SOTA quality practice through `ruff`, strict `mypy`, `pytest-cov`, `pre-commit`, CI, a 90% coverage gate, and PR verification checklists.
 
 ## Next Steps
 

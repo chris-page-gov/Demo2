@@ -16,14 +16,16 @@ Track integration issues, failed assumptions, and verification steps while build
 - Check pagination behavior against real multi-page event responses.
 - Distinguish authentication failures from permission failures.
 - Capture rate-limit responses and retry behavior.
+- Keep `ruff`, strict `mypy`, and `pytest` green after every implementation change.
+- Reserve coverage enforcement for final validation and CI to avoid slowing down iterative test loops.
 
 ## Investigation Log
 
 ### 2026-03-27
 
 - Created initial debug tracker.
-- No runtime API integration existed yet, so there were no request failures to record.
 - Added the first implementation slice: config loading, authenticated client, organization-scoped event enrichment, JSON output, and unit tests.
+- Added repo-level engineering guardrails for TDD, linting, typing, pre-commit, CI, and a 90% coverage gate.
 - Live API verification is still pending.
 
 ## Useful Signals To Capture
@@ -52,3 +54,4 @@ Track integration issues, failed assumptions, and verification steps while build
 - Added `Changelog.md` as the baseline history for repo-visible changes.
 - Added baseline repository governance files for license, contribution policy, security reporting, code ownership, and contributor guidance.
 - Added Git and editor-level cross-platform controls for line endings, formatting defaults, and OS-specific ignore patterns.
+- Added repo quality controls for linting, typing, pre-commit, CI, local test-driven workflow enforcement, and a separate coverage gate for final validation.

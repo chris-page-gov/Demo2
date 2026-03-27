@@ -1,8 +1,8 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
 import time
-from typing import Any
+from dataclasses import dataclass
+from typing import Any, cast
 
 import requests
 
@@ -36,7 +36,11 @@ class EventbriteClient:
         attempts = 0
         while True:
             try:
-                response = self.session.get(url, params=params, timeout=self.settings.timeout_seconds)
+                response = self.session.get(
+                    url,
+                    params=params,
+                    timeout=self.settings.timeout_seconds,
+                )
             except requests.RequestException as exc:
                 raise EventbriteAPIError(f"Eventbrite request failed: {exc}") from exc
             if response.status_code == 429 and attempts < self.max_retries:
@@ -53,9 +57,15 @@ class EventbriteClient:
                 raise EventbriteAPIError(
                     f"Eventbrite request failed with {response.status_code}: {response.text[:500]}"
                 )
-            return response.json()
+            payload = response.json()
+            return cast(dict[str, Any], payload)
 
-    def paginate(self, path: str, collection_key: str, params: dict[str, Any] | None = None) -> list[dict[str, Any]]:
+    def paginate(
+        self,
+        path: str,
+        collection_key: str,
+        params: dict[str, Any] | None = None,
+    ) -> list[dict[str, Any]]:
         request_params = dict(params or {})
         request_params.setdefault("page_size", self.settings.page_size)
         page_number = 1

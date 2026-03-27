@@ -42,3 +42,30 @@ def test_load_settings_requires_token(monkeypatch: pytest.MonkeyPatch) -> None:
 
     with pytest.raises(ConfigurationError, match="EVENTBRITE_API_TOKEN"):
         load_settings()
+
+
+def test_load_settings_rejects_non_integer_page_size(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setenv("EVENTBRITE_API_TOKEN", "token-123")
+    monkeypatch.setenv("EVENTBRITE_ORGANIZATION_ID", "org-456")
+    monkeypatch.setenv("EVENTBRITE_PAGE_SIZE", "abc")
+
+    with pytest.raises(ConfigurationError, match="EVENTBRITE_PAGE_SIZE"):
+        load_settings()
+
+
+def test_load_settings_rejects_non_positive_page_limit(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setenv("EVENTBRITE_API_TOKEN", "token-123")
+    monkeypatch.setenv("EVENTBRITE_ORGANIZATION_ID", "org-456")
+    monkeypatch.setenv("EVENTBRITE_PAGE_LIMIT", "0")
+
+    with pytest.raises(ConfigurationError, match="EVENTBRITE_PAGE_LIMIT"):
+        load_settings()
+
+
+def test_load_settings_rejects_non_numeric_timeout(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setenv("EVENTBRITE_API_TOKEN", "token-123")
+    monkeypatch.setenv("EVENTBRITE_ORGANIZATION_ID", "org-456")
+    monkeypatch.setenv("EVENTBRITE_TIMEOUT_SECONDS", "fast")
+
+    with pytest.raises(ConfigurationError, match="EVENTBRITE_TIMEOUT_SECONDS"):
+        load_settings()
