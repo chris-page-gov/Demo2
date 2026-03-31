@@ -26,6 +26,7 @@ Track integration issues, failed assumptions, and verification steps while build
 - Created initial debug tracker.
 - Added the first implementation slice: config loading, authenticated client, organization-scoped event enrichment, JSON output, and unit tests.
 - Added repo-level engineering guardrails for TDD, linting, typing, pre-commit, CI, and a 90% coverage gate.
+- Verified that branch protection could not be enabled from this workspace because repository settings access was unavailable here.
 - Live API verification is still pending.
 
 ## Useful Signals To Capture
